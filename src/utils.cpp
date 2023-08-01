@@ -16,7 +16,7 @@ static constexpr uint8_t bsr(Bitboard bb) {                 // поиск пос
 
 // оценка количества фигур в строке и в столбце
 namespace BitboardRows {
-    static consteval std::array<Bitboard, 8> calc_rows() {      ///
+    static consteval std::array<Bitboard, 8> calc_rows() {
         std::array<Bitboard, 8> rows {};
 
         for (uint8_t y = 0; y < 8; ++y) {
@@ -29,7 +29,7 @@ namespace BitboardRows {
     static constexpr std::array<Bitboard, 8> Rows = BitboardRows::calc_rows();
 
 
-    static consteval std::array<Bitboard, 8> calc_inversion_rows() {    ///
+    static consteval std::array<Bitboard, 8> calc_inversion_rows() {
         std::array<Bitboard, 8> inversion_rows{};
         for(uint8_t i = 0; i < 8; ++i) 
             inversion_rows[i] = ~Rows[i];
@@ -42,7 +42,7 @@ namespace BitboardRows {
 
 
 namespace BitboardColumns {
-    static consteval std::array<Bitboard, 8> calc_columns() {   ////
+    static consteval std::array<Bitboard, 8> calc_columns() {
         std::array<Bitboard, 8> columns{};
 
         for (uint8_t x = 0; x < 8; ++x) {
@@ -54,7 +54,7 @@ namespace BitboardColumns {
 
     static constexpr std::array<Bitboard, 8> Columns = BitboardColumns::calc_columns();
 
-    static consteval std::array<Bitboard, 8> calc_inversion_columns() { ///
+    static consteval std::array<Bitboard, 8> calc_inversion_columns() { 
         std::array<Bitboard, 8> inversion_columns{};
 
         for (uint8_t i = 0; i < 8; ++i) inversion_columns[i] = ~Columns[i];

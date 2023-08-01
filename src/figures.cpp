@@ -25,27 +25,27 @@ bool operator ==(const figure& left, const figure& right) {
 void figure::update_bitboards() {
     this->_side_bitboards[figure::White] = this->_type_bitboards[figure::White][figure::Pawn] |
                                            this->_type_bitboards[figure::White][figure::Knight] |
-                                           this->_type_bitboards[figure::White][figure::Bishop] |
+                                           this->_type_bitboards[figure::White][figure::Bishop] |           // получаем карту белых фигур
                                            this->_type_bitboards[figure::White][figure::Rook] |
                                            this->_type_bitboards[figure::White][figure::Queen] |
                                            this->_type_bitboards[figure::White][figure::King];
 
     this->_side_bitboards[figure::Black] = this->_type_bitboards[figure::Black][figure::Pawn] |
                                            this->_type_bitboards[figure::Black][figure::Knight] |
-                                           this->_type_bitboards[figure::Black][figure::Bishop] |
+                                           this->_type_bitboards[figure::Black][figure::Bishop] |           // аналогично черных
                                            this->_type_bitboards[figure::Black][figure::Rook] |
                                            this->_type_bitboards[figure::Black][figure::Queen] |
                                            this->_type_bitboards[figure::Black][figure::King];
 
-    this->_inversion_side_bitboards[figure::White] = ~this->_side_bitboards[figure::White];
-    this->_inversion_side_bitboards[figure::Black] = ~this->_side_bitboards[figure::Black];
+    this->_inversion_side_bitboards[figure::White] = ~this->_side_bitboards[figure::White];                 // до где пусто либо черные
+    this->_inversion_side_bitboards[figure::Black] = ~this->_side_bitboards[figure::Black];                 // аналогично
 
-    this->_all = this->_side_bitboards[figure::White] | this->_side_bitboards[figure::Black];
-    this->_empty = ~this->_all;
+    this->_all = this->_side_bitboards[figure::White] | this->_side_bitboards[figure::Black];               // заполненные клетки
+    this->_empty = ~this->_all;                                                                             // пустые клетки
 }
 
-figure::figure(const std::string& short_fen) {
-    uint8_t x = 0;
+figure::figure(const std::string& short_fen) {                                                              // Задание пераоначального положения фигур в соответсвии с нотацией 
+    uint8_t x = 0;                                                                                          // rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR
     uint8_t y = 7;
 
     uint8_t side;
@@ -83,7 +83,7 @@ figure::figure(const std::string& short_fen) {
 
 std::ostream &operator<<(std::ostream &ostream, figure figure) {
     for (int8_t y = 7; y >= 0; --y) {
-        for (uint8_t x = 0; x < 8; x++) {
+        for (uint8_t x = 0; x < 8; ++x) {
             ostream << "|  ";
 
             if (BitboardOperations::get_bit(figure._type_bitboards[figure::White][figure::Pawn], y * 8 + x)) ostream << "♙";

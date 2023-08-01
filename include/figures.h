@@ -6,7 +6,7 @@
 typedef struct figure {
     std::array<std::array<Bitboard, 6>, 2> _type_bitboards{}; // позиция конкретной фигуры
     std::array<Bitboard, 2> _side_bitboards{};                  // позиция белой или черной фигуры
-    std::array<Bitboard, 2> _inversion_side_bitboards{};
+    std::array<Bitboard, 2> _inversion_side_bitboards{};        // позиции, где нет фигур черного или белого цвета
     Bitboard _all;
     Bitboard _empty;
 
